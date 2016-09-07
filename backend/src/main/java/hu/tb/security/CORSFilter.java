@@ -13,11 +13,11 @@ import java.io.IOException;
  * Created by Tivadar Bocz on 2016.09.02..
  */
 @Component
-public class SimpleCorsFilter implements Filter {
+public class CORSFilter implements Filter {
 
-    private final Logger log = LoggerFactory.getLogger(SimpleCorsFilter.class);
+    private final Logger log = LoggerFactory.getLogger(CORSFilter.class);
 
-    public SimpleCorsFilter() {
+    public CORSFilter() {
         log.info("SimpleCORSFilter init");
     }
 
@@ -27,12 +27,13 @@ public class SimpleCorsFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
 
-        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+        //response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
-
+        //response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
+        response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin, x-auth-token, remember-me, Authorization");
         chain.doFilter(req, res);
     }
     @Override
