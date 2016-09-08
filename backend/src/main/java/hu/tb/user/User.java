@@ -1,17 +1,15 @@
 package hu.tb.user;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
  * Created by Admin on 2016.09.08..
  */
 @Entity
+@Table(name = "user", schema = "public")
 public class User {
-    private int id;
+    private int userId;
     private String userName;
     private String password;
     private String email;
@@ -23,13 +21,13 @@ public class User {
     private String createdBy;
 
     @Id
-    @Column(name = "id", nullable = false, insertable = true, updatable = true)
-    public int getId() {
-        return id;
+    @Column(name = "user_id", nullable = false, insertable = true, updatable = true)
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Basic
@@ -101,7 +99,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "createdOn", nullable = true, insertable = true, updatable = true)
+    @Column(name = "created_on", nullable = true, insertable = true, updatable = true)
     public Timestamp getCreatedOn() {
         return createdOn;
     }
@@ -111,7 +109,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "createdBy", nullable = true, insertable = true, updatable = true, length = 64)
+    @Column(name = "created_by", nullable = true, insertable = true, updatable = true, length = 64)
     public String getCreatedBy() {
         return createdBy;
     }
@@ -127,7 +125,7 @@ public class User {
 
         User user = (User) o;
 
-        if (id != user.id) return false;
+        if (userId != user.userId) return false;
         if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
@@ -142,7 +140,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = userId;
         result = 31 * result + (userName != null ? userName.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);

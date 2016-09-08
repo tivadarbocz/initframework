@@ -7,7 +7,7 @@ databaseChangeLog:
               tableName: user
               columns:
                 - column:
-                    name: id
+                    name: user_id
                     type: int
                     autoIncrement: true
                     constraints:
@@ -35,11 +35,11 @@ databaseChangeLog:
                     name: disabled
                     type: boolean
                 - column:
-                    name: createdOn
+                    name: created_on
                     type: timestamp
                     defaultValueComputed: "CURRENT_TIMESTAMP"
                 - column:
-                    name: createdBy
+                    name: created_by
                     type: varchar(64)
 
     - changeSet:
@@ -68,7 +68,7 @@ databaseChangeLog:
                     name: disabled
                     value: f
                 - column:
-                    name: createdBy
+                    name: created_by
                     value: 'system'
 
           - insert:
@@ -93,5 +93,5 @@ databaseChangeLog:
                     name: disabled
                     value: f
                 - column:
-                    name: createdBy
+                    name: created_by
                     value: 'system'
