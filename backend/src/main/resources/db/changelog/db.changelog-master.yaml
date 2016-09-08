@@ -1,0 +1,97 @@
+databaseChangeLog:
+    - changeSet:
+        id: default tables
+        author: Tivadar Bocz
+        changes:
+          - createTable:
+              tableName: user
+              columns:
+                - column:
+                    name: id
+                    type: int
+                    autoIncrement: true
+                    constraints:
+                      primaryKey: true
+                      nullable: false
+                - column:
+                    name: user_name
+                    type: varchar(64)
+                - column:
+                    name: password
+                    type: varchar(255)
+                - column:
+                    name: email
+                    type: varchar(128)
+                - column:
+                    name: first_name
+                    type: varchar(64)
+                - column:
+                    name: last_name
+                    type: varchar(64)
+                - column:
+                    name: role
+                    type: varchar(64)
+                - column:
+                    name: disabled
+                    type: boolean
+                - column:
+                    name: createdOn
+                    type: timestamp
+                    defaultValueComputed: "CURRENT_TIMESTAMP"
+                - column:
+                    name: createdBy
+                    type: varchar(64)
+
+    - changeSet:
+        id: insert default users
+        author: Tivadar Bocz
+        changes:
+          - insert:
+              tableName: user
+              columns:
+                - column:
+                    name: user_name
+                    value: 'admin'
+                - column:
+                    name: password
+                    value: 'ee11cbb19052e40b07aac0ca060c23ee'
+                - column:
+                    name: first_name
+                    value: 'Joshua'
+                - column:
+                    name: last_name
+                    value: 'Brown'
+                - column:
+                    name: role
+                    value: 'admin'
+                - column:
+                    name: disabled
+                    value: f
+                - column:
+                    name: createdBy
+                    value: 'system'
+
+          - insert:
+              tableName: user
+              columns:
+                - column:
+                    name: user_name
+                    value: 'user'
+                - column:
+                    name: password
+                    value: '21232f297a57a5a743894a0e4a801fc3'
+                - column:
+                    name: first_name
+                    value: 'Margery'
+                - column:
+                    name: last_name
+                    value: 'Dedo'
+                - column:
+                    name: role
+                    value: 'user'
+                - column:
+                    name: disabled
+                    value: f
+                - column:
+                    name: createdBy
+                    value: 'system'

@@ -15,10 +15,8 @@ public class BackendApplication {
 		registrationBean.setFilter(new JwtFilter());
 		registrationBean.addUrlPatterns("/api/*");
 		return registrationBean;
-	}
-
-
-	public static void main(String[] args) {
+		}
+		public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
-	}
+		}
 }
