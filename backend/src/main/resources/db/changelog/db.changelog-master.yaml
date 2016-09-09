@@ -16,12 +16,16 @@ databaseChangeLog:
                 - column:
                     name: user_name
                     type: varchar(64)
+                    constraints:
+                      unique: true
                 - column:
                     name: password
                     type: varchar(255)
                 - column:
                     name: email
                     type: varchar(128)
+                    constraints:
+                      unique: true
                 - column:
                     name: first_name
                     type: varchar(64)
@@ -54,7 +58,7 @@ databaseChangeLog:
                     value: 'admin'
                 - column:
                     name: password
-                    value: 'ee11cbb19052e40b07aac0ca060c23ee'
+                    value: '21232f297a57a5a743894a0e4a801fc3'
                 - column:
                     name: first_name
                     value: 'Joshua'
@@ -79,7 +83,7 @@ databaseChangeLog:
                     value: 'user'
                 - column:
                     name: password
-                    value: '21232f297a57a5a743894a0e4a801fc3'
+                    value: 'ee11cbb19052e40b07aac0ca060c23ee'
                 - column:
                     name: first_name
                     value: 'Margery'

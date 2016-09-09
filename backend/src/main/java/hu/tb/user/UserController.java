@@ -4,10 +4,7 @@ package hu.tb.user;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import java.util.Date;
@@ -36,18 +33,28 @@ public class UserController {
         userDb.add(user2);*/
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
-    public LoginResponse login(@RequestBody final UserMapper userMapper) throws ServletException {
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+     public LoginResponse login(@RequestBody final UserMapper userMapper) throws ServletException {
 
         User tmpUser =  userMapper.process();
         if(userService.userCanLogin(userMapper.process())){
-                return new LoginResponse(Jwts.builder().setSubject(tmpUser.getUserName())
-                        .claim("roles", tmpUser.getUserName()).setIssuedAt(new Date())
-                        .signWith(SignatureAlgorithm.HS256, "secretkey").compact());
+            return new LoginResponse(Jwts.builder().setSubject(tmpUser.getUserName())
+                    .claim("roles", tmpUser.getUserName()).setIssuedAt(new Date())
+                    .signWith(SignatureAlgorithm.HS256, "secretkey").compact());
         }
         else{
             throw new ServletException("Invalid login");
         }
+    }
+
+    @RequestMapping(value ="/", method = RequestMethod.POST)
+    public User getUserByUserName(@RequestParam("userName") String userName){
+        return userService.getUserByUserName(userName);
+    }
+
+    @RequestMapping(value ="/", method = RequestMethod.GET)
+    public Iterable<User> getAllUser(){
+        return userService.getAllUser();
     }
 
     @SuppressWarnings("unused")

@@ -15,4 +15,5 @@ public interface UserRepository extends JpaRepository<User, Serializable> {
 
     @Query(value = "SELECT u FROM User u WHERE u.userName = :userName")
     User getUserByUserName(@Param("userName") String userName);
+
 }

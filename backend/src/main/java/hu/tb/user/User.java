@@ -1,10 +1,12 @@
 package hu.tb.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by Admin on 2016.09.08..
+ * Created by Admin on 2016.09.09..
  */
 @Entity
 @Table(name = "user", schema = "public")
@@ -42,6 +44,7 @@ public class User {
 
     @Basic
     @Column(name = "password", nullable = true, insertable = true, updatable = true, length = 255)
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
