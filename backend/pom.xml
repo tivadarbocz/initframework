@@ -56,6 +56,23 @@
 			<artifactId>lombok</artifactId>
 			<version>1.16.10</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.3.2.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>4.3.2.RELEASE</version>
+		</dependency>
+		<!-- email -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.5.5</version>
+		</dependency>
 		<!-- liquibase -->
 		<dependency>
 			<groupId>org.liquibase</groupId>
@@ -68,9 +85,6 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.8.1</version>
 		</dependency>
-
-
-
 
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -135,6 +149,30 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<!-- liquiabse plugin-->
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<configuration>
+					<changeLogFile>src/main/resources/db/changelog/changelog.xml</changeLogFile>
+					<!-- 					Ha az adatbázisod nem a localhost-on van, tehát a saját gépeden, akkor a localhost-ot cseréld ki -->
+					<!-- 					Ha az adatbázisod nem test néven elérhető, akkor az adatbázisod nevére cseréld ki a test - t -->
+					<driver>org.postgresql.Driver</driver>
+					<url>jdbc:postgresql://localhost:5432/init</url>
+					<!-- 					Cseréld ki a felhasználónevet és a jelszót, ha nem test/test :) -->
+					<username>postgres</username>
+					<password>admin</password>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>update</goal>
+						</goals>
+
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
