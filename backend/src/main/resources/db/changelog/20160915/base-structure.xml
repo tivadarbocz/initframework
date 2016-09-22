@@ -30,6 +30,25 @@
             </column>
         </createTable>
 
+        <createTable tableName="role">
+            <column name="role_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="role_name" type="varchar(32)">
+                <constraints unique="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="user_x_role">
+            <column name="user_role_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="int">
+            </column>
+            <column name="role_id" type="int">
+            </column>
+        </createTable>
+
         <insert tableName="user">
             <column name="user_name">admin</column>
             <column name="password">21232f297a57a5a743894a0e4a801fc3</column>
@@ -47,6 +66,25 @@
             <column name="role">user</column>
             <column name="disabled">f</column>
             <column name="created_by">system</column>
+        </insert>
+
+        <insert tableName="role">
+            <column name="role_name">ROLE_USER</column>
+        </insert>
+        <insert tableName="role">
+            <column name="role_name">ROLE_ADMIN</column>
+        </insert>
+        <insert tableName="user_x_role">
+            <column name="user_id">1</column>
+            <column name="role_id">1</column>
+        </insert>
+        <insert tableName="user_x_role">
+            <column name="user_id">1</column>
+            <column name="role_id">2</column>
+        </insert>
+        <insert tableName="user_x_role">
+            <column name="user_id">2</column>
+            <column name="role_id">1</column>
         </insert>
     </changeSet>
 </databaseChangeLog>
